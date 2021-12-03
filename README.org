@@ -1,0 +1,6 @@
+#+title: My emacs configuration
+
+This is my (still in progress) emacs configuration.
+Most of the code has been taken from the "Emacs from Scratch" tutorial series (repo here: [[https://github.com/daviwil/emacs-from-scratch][emacs-from-scratch]] )
+
+
