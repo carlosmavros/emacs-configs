@@ -110,7 +110,6 @@
     :states '(normal visual insert motion emacs hybrid operator)
     :prefix "SPC"
     :non-normal-prefix "C-SPC")
-
   (tyrant-def
    "!" 'shell-comand
    ":" 'eval-expression
@@ -121,8 +120,10 @@
    "b p" 'previous-buffer
    "b k" 'kill-this-buffer
    "b b" 'switch-to-buffer
-   "b e" '(eval-buffer :which-key "buffer") 
+   "b e" '(eval-buffer :which-key "buffer")
 
+   ;latex
+   "L" 'TeX-command-master
    ; files
    "f" '(:igonre t :which-key "file")
    "f f" 'find-file
@@ -448,3 +449,5 @@
   :ensure t
   :config
   (setq TeX-auto-save t))
+;;pending: add :general to latex for specific keybindings
+
