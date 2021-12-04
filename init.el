@@ -113,6 +113,13 @@
   (tyrant-def
    "!" 'shell-comand
    ":" 'eval-expression
+
+   ; undo-tree
+   "u" '(:ignore t :which-key "undo-tree-menu")
+   "u u" 'undo-tree-undo
+   "u r" 'undo-tree-redo
+   "u v" 'undo-tree-visualize
+
    ; buffers
    "b" '(:ignore t :which-key "buffer") 
    "b n" 'next-buffer
@@ -449,5 +456,9 @@
   :ensure t
   :config
   (setq TeX-auto-save t))
-;;pending: add :general to latex for specific keybindings
 
+;; Undo-tree
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode))
