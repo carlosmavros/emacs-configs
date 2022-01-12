@@ -21,7 +21,7 @@
 (setq visible-bell t)       ; Set up the visible bell
 
 ;; Font and theme
-(set-face-attribute 'default nil :font "Fira Code Retina" :height 130)
+(set-face-attribute 'default nil :font "Fira Code Retina" :height 120)
 
 ;; Extra Stuff 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; Make ESC quit prompts
@@ -164,7 +164,8 @@
    "o a" 'org-agenda
    "o s" 'org-schedule ;shift-arrowkeys to navigate
    "o l" 'org-insert-link
-   "o t c" 'org-toggle-checkbox
+   "o t" 'org-toggle-checkbox
+   "o e" 'org-export-dispatch
    )) 
 
 ;; Ivy
@@ -221,12 +222,21 @@
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
   (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil)
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
@@ -242,8 +252,6 @@
   :hook (python-mode . lsp-deferred)
   :custom
   (python-shell-interpreter "python3"))
-
-
 
 ;; Projectile
 (use-package projectile
@@ -266,7 +274,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit auctex jedi company-jedi lsp-ivy lsp-treemacs lsp-ui lsp-mode which-key visual-fill-column use-package rainbow-delimiters python-mode org-bullets general evil eshell-git-prompt doom-themes doom-modeline counsel-projectile))
+   '(rustic rust-mode magit auctex jedi company-jedi lsp-ivy lsp-treemacs lsp-ui lsp-mode which-key visual-fill-column use-package rainbow-delimiters python-mode org-bullets general evil eshell-git-prompt doom-themes doom-modeline counsel-projectile))
  '(safe-local-variable-values '((TeX-engine . xetex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
